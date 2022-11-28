@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapereir <dapereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 12:50:06 by dapereir          #+#    #+#             */
-/*   Updated: 2022/11/28 12:00:42 by dapereir         ###   ########.fr       */
+/*   Created: 2022/11/28 11:42:46 by dapereir          #+#    #+#             */
+/*   Updated: 2022/11/28 11:46:57 by dapereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*gnl_free(char **str)
 {
