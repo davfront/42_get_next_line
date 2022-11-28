@@ -6,7 +6,7 @@
 /*   By: dapereir <dapereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:42:46 by dapereir          #+#    #+#             */
-/*   Updated: 2022/11/28 11:46:57 by dapereir         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:31:21 by dapereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ static char	*gnl_extract_line(char **store, char *breakline)
 	}
 	line = ft_strndup(*store, breakline - *store + 1);
 	if (!line)
-		return (NULL);
+		return (gnl_free(store));
 	new_store = ft_strdup(breakline + 1);
 	if (!new_store)
-		return (NULL);
+	{
+		gnl_free(&line);
+		return (gnl_free(store));
+	}
 	gnl_free(store);
 	*store = new_store;
 	return (line);
