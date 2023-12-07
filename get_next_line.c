@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapereir <dapereir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapereir <dapereir@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 12:50:06 by dapereir          #+#    #+#             */
-/*   Updated: 2022/11/28 12:31:20 by dapereir         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:01:26 by dapereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,24 @@ static char	*gnl_free(char **str)
 
 static int	gnl_read_more(char **store, int fd)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	char	*new_store;
 	int		buffer_size;
 
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (-1);
 	buffer_size = read(fd, buffer, BUFFER_SIZE);
 	if (buffer_size > 0)
 	{
 		buffer[buffer_size] = '\0';
 		new_store = ft_strjoin(*store, buffer);
 		if (!new_store)
-			return (-1);
+			return (gnl_free(&buffer), -1);
 		gnl_free(store);
 		*store = new_store;
 	}
-	return (buffer_size);
+	return (gnl_free(&buffer), buffer_size);
 }
 
 static char	*gnl_extract_line(char **store, char *breakline)
